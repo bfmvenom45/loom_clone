@@ -20,6 +20,8 @@ export const filterOptions = [
 
 export type Visibility = 'public' | 'private';
 
+export const visibilities: Visibility[] = ["public", "private"];
+
 export const ICONS = {
   record: "/assets/icons/record.svg",
   close: "/assets/icons/close.svg",

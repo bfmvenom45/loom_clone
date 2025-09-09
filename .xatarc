@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Oleksandr-Bushko-s-workspace-7ldm6f.eu-central-1.xata.sh/db/dev_snapcast",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}

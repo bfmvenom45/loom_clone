@@ -3,16 +3,30 @@ import Image from "next/image"
 import Link from "next/link"
 
 
+import { Visibility } from "@/constants";
+
+interface VideoCardProps {
+    id: string;
+    title: string;
+    thumbnail: string;
+    userImg: string;
+    username: string;
+    createdAt: Date;
+    views: number;
+    visibility: Visibility;
+    duration: number | null;
+}
+
 const VideoCard = ({
-    id,
-    title,
-    thumbnail,
-    createdAt,
-    userImg,
-    username,
-    views,
-    visibility,
-    duration
+        id,
+        title,
+        thumbnail,
+        createdAt,
+        userImg,
+        username,
+        views,
+        visibility,
+        duration
 }: VideoCardProps ) => {
   return (
     <Link href={`/video/${id}`} className="video-card">

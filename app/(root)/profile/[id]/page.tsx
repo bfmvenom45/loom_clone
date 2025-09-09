@@ -1,15 +1,18 @@
+
 import Header from "@/components/Header";
-import VideoCard from "@/components/VideoCard"; 
-import { dummyCards } from "@/constants";
+import VideoCard from "@/components/VideoCard";
+import { dummyCards, Visibility } from "@/constants";
 
+interface PageProps {
+  params: { id: string }
+}
 
-const Page = ({ params }: ParamsWithSearch) => {
+const Page = ({ params }: PageProps) => {
   const { id } = params;
   return (
     <div className="wrapper page">
-        <Header subHeader="dev.bushko@gmail.com" title="Oleksandr Bushko" userImg="/assets/images/dummy.jpg" />
-        <section className='video-grid'>
-
+      <Header subHeader="dev.bushko@gmail.com" title="Oleksandr Bushko" userImg="/assets/images/dummy.jpg" />
+      <section className='video-grid'>
         {dummyCards.map((card) => (
           <VideoCard
             key={card.id}
@@ -17,7 +20,7 @@ const Page = ({ params }: ParamsWithSearch) => {
             visibility={card.visibility as Visibility}
           />
         ))}
-        </section>
+      </section>
     </div>
   );
 };
