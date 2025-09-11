@@ -8,7 +8,7 @@ import { and, desc, eq, ilike, or, sql } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import {apiFetch, doesTitleMatch, getEnv, getOrderByClause, withErrorHandling} from "@/lib/utils";
 import { BUNNY } from "@/constants";
-// import aj, { fixedWindow, request } from "../arcjet";
+import aj, { fixedWindow, request } from "../arcjet";
 
 // Constants with full names
 const VIDEO_STREAM_BASE_URL = BUNNY.STREAM_BASE_URL;
@@ -20,21 +20,21 @@ const ACCESS_KEYS = {
   storageAccessKey: getEnv("BUNNY_STORAGE_ACCESS_KEY"),
 };
 
-// const validateWithArcjet = async (fingerPrint: string) => {
-//   const rateLimit = aj.withRule(
-//     fixedWindow({
-//       mode: "LIVE",
-//       window: "1m",
-//       max: 2,
-//       characteristics: ["fingerprint"],
-//     })
-//   );
-//   const req = await request();
-//   const decision = await rateLimit.protect(req, { fingerprint: fingerPrint });
-//   if (decision.isDenied()) {
-//     throw new Error("Rate Limit Exceeded");
-//   }
-// };
+const validateWithArcjet = async (fingerPrint: string) => {
+  const rateLimit = aj.withRule(
+    fixedWindow({
+      mode: "LIVE",
+      window: "1m",
+      max: 2,
+      characteristics: ["fingerprint"],
+    })
+  );
+  const req = await request();
+  const decision = await rateLimit.protect(req, { fingerprint: fingerPrint });
+  if (decision.isDenied()) {
+    throw new Error("Rate Limit Exceeded");
+  }
+};
 
 // Helper functions with descriptive names
 const revalidatePaths = (paths: string[]) => {
